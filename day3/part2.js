@@ -22,11 +22,26 @@ function calculateJolts(line = "", joltNum = 12) {
   let temp = line[0];
 
   for (let i = 1; i < line.length; i++) {
+    let isAdded = false;
+
     for (let j = 0; j < temp.length; j++) {
       if (+line[i] > +temp[j]) {
-        temp = temp.substring(0, j) + line[i];
+        let addVar = temp.substring(0, j) + line[i];
+        if (i + (joltNum - addVar.length) < line.length) {
+          temp = addVar;
+        }
+      } else {
+        if (temp.length < joltNum) {
+          if (!isAdded) {
+            temp += line[i];
+            isAdded = true;
+          }
+        }
       }
     }
+  }
+  if (temp.length < joltNum) {
+    temp += line.substring(line.length - (joltNum - temp.length));
   }
 
   console.log(temp, "temp");
