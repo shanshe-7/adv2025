@@ -42,8 +42,6 @@ function calculateRolls(rolls = []) {
 
     for (let j = 0; j < element.length; j++) {
       if (element[j] === "@") {
-        console.log("one cycle");
-
         let col = j;
         let row = i;
         let colEnd = element.length;
