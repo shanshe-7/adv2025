@@ -37,19 +37,17 @@ function calculateRolls(rolls = []) {
   let temp = 0;
 
   for (let i = 0; i < rolls.length; i++) {
-    console.log("done", temp);
-
     let element = rolls[i];
     let counter = 0;
 
     for (let j = 0; j < element.length; j++) {
       if (element[j] === "@") {
+        console.log("one cycle");
+
         let col = j;
         let row = i;
         let colEnd = element.length;
         let rowEnd = rolls.length;
-
-        console.log(row, col, "col");
 
         combinations.forEach((shift) => {
           const [rowSh, colSh] = shift;
@@ -64,24 +62,17 @@ function calculateRolls(rolls = []) {
             searCol < colEnd
           ) {
             if (rolls[searRow][searCol] === "@") {
-              counter++;
+              counter += 1;
             }
           }
         });
-      }
-      if (counter < 4) {
-        temp += 1;
-      }
 
-      //   temp += counter;
+        if (counter < 4) {
+          temp += 1;
+        }
+        counter = 0;
+      }
     }
-
-    // [0,0  0,1  0,2
-
-    //  1,0, 1,1  1,2
-
-    //  2,0  2,1  2,2
-    // ]
   }
   console.log(temp, "t");
 }
